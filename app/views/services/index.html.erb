@@ -4,7 +4,8 @@
 
 <% @services.each do |service| %>
   <p>
-    Service: <%= service.name %></br>
+    Service: <%= link_to service.name, service_path(service) %>
+    <br>
     Base Cost: <%= service.base_cost %>
   </p>
 <% end %>

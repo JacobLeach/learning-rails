@@ -7,12 +7,16 @@ class ServicesController < ApplicationController
     @service = Service.new
   end
 
+  def edit
+    @service = Service.find(params[:id])
+  end
+
   def index
     @services = Service.all
   end
   
   def create
-    @service = Service.new(params.require(:service).permit(:name, :base_cost))
+    @service = Service.new(service_params)
 
     if @service.save
       redirect_to @service
@@ -20,4 +24,19 @@ class ServicesController < ApplicationController
       render 'new'
     end
   end
+
+  def update
+    @service = Service.find(params[:id])
+
+    if @service.update(service_params)
+      redirect_to @service
+    else
+      render 'edit'
+    end
+  end
+
+  private
+    def service_params
+      params.require(:service).permit(:name, :base_cost)
+    end
 end

@@ -1,0 +1,25 @@
+<h1>Edit a service</h1>
+
+<%= form_with(model: @service, local: true) do |form| %>
+  <% if @service.errors.any? %>
+    <%= pluralize(@service.errors.count, "error") %> prohibited this article from being saved:
+    <% @service.errors.full_messages.each do |message| %>
+      <p>
+        Error: <%= message %>
+      </p>
+    <% end%>
+  <% end %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :base_cost %><br>
+    <%= form.text_field :base_cost %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
